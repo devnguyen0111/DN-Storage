@@ -1,0 +1,87 @@
+# English Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lITEM STORAGE"
+gui.category.title: "&6&lSTORAGE - {category} &7(Page {page}/{total})"
+
+# Category Names
+category.ore: "Ores"
+category.building: "Building Blocks"
+category.wood: "Wood Blocks"
+
+# Messages
+message.storage.opened: "&aUse /kho or /storage to open item storage!"
+message.item.added: "&aAdded &e{amount} &a{item} to storage!"
+message.item.removed: "&aRetrieved &e{amount} &a{item} from storage!"
+message.item.not_storable: "&cThis item cannot be stored!"
+message.item.not_found: "&cThis item is not in storage!"
+message.item.wrong_category: "&cWrong category! This item belongs to {category}, not the current category."
+message.inventory.full: "&cInventory is full! Some items have been returned to storage."
+message.items.added_from_inventory: "&aAdded &e{total} &aitems from &e{count} &atypes to {category} storage!"
+message.items.none_in_inventory: "&cNo items in inventory belong to {category} category!"
+
+# Auto Pickup
+autopickup.enabled: "&aAuto pickup enabled!"
+autopickup.disabled: "&cAuto pickup disabled!"
+autopickup.item_picked: "&a[Auto] Added &e{amount} &a{item} to storage!"
+
+# Commands
+command.no_permission: "&cYou don't have permission to use this command!"
+command.only_player: "&cThis command is only for players!"
+
+# GUI Buttons
+button.close: "&c&lClose"
+button.back: "&e&l◀ Back"
+button.next_page: "&e&lNext Page ▶▶"
+button.prev_page: "&e&l◀◀ Previous Page"
+button.add_from_inventory: "&a&lAdd From Inventory"
+button.autopickup.on: "&a&lAuto Pickup: &aON"
+button.autopickup.off: "&7&lAuto Pickup: &cOFF"
+
+# GUI Lore
+lore.item.amount: "&7Amount: &a{amount}"
+lore.item.click_left: "&eLeft click: &aRetrieve 1 stack"
+lore.item.click_right_item: "&eRight click on item: &aRetrieve 1 item"
+lore.item.click_right_empty: "&7Right click empty slot: &aAdd item to storage"
+lore.item.shift_click: "&eShift + Left click: &aRetrieve all"
+lore.category.item_count: "&7Item types: &a{count}"
+lore.category.total_amount: "&7Total amount: &a{amount}"
+lore.category.click_to_open: "&eClick to open {category} storage"
+lore.autopickup.description: "&7Automatically pick up items&7dropped on ground into storage"
+lore.autopickup.status.on: "&a✓ Enabled"
+lore.autopickup.status.off: "&c✗ Disabled"
+lore.autopickup.click_to_toggle: "&eClick to {action}"
+lore.autopickup.toggle.on: "disable"
+lore.autopickup.toggle.off: "enable"
+lore.add_from_inventory.description: "&7Add all items\n&7in this category\n&7from inventory to storage"
+lore.add_from_inventory.click: "&eClick to add"
+
+# Database
+database.connected: "Successfully connected to database!"
+database.connection_failed: "Failed to connect to database!"
+database.driver_not_found: "Could not find {driver} Driver! Please ensure driver is included in JAR."
+database.connection_null: "Connection is null! Cannot perform database operation."
+database.cannot_add_item: "Cannot add item: Connection is null"
+database.cannot_get_amount: "Cannot get item amount: Connection is null"
+database.cannot_update: "Cannot update item amount: Connection is null"
+database.cannot_delete: "Cannot delete item: Connection is null"
+database.cannot_get_items: "Cannot get item list: Connection is null"
+database.connection_closed: "Database connection closed!"
+database.reconnect_failed: "Cannot reconnect to database!"
+
+# Plugin
+plugin.enabled: "DN-Storage has been enabled!"
+plugin.disabled: "DN-Storage has been disabled!"
+plugin.language_loaded: "Language loaded: {language}"
+plugin.language_key_not_found: "Language key not found: {key}"
+
+# Storage
+storage.invalid_material: "Invalid material: {material}"
+
+# Database Errors
+database.error.add_item: "Error adding item to database!"
+database.error.get_amount: "Error getting item amount from database!"
+database.error.update: "Error updating item amount!"
+database.error.delete: "Error deleting item from database!"
+database.error.get_items: "Error getting item list from database!"
+database.error.close: "Error closing database connection!"

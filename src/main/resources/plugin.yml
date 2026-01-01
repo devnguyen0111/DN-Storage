@@ -1,0 +1,26 @@
+name: DN-Storage
+version: "1.0-SNAPSHOT"
+main: org.dnplugins.dNStorage.DNStorage
+api-version: "1.21"
+load: STARTUP
+authors: [devnguyen0111]
+description: Plugin kho chứa vật phẩm với GUI trực quan
+website: https://devnguyen.xyz
+
+commands:
+  kho:
+    description: Mở kho chứa vật phẩm
+    usage: /<command>
+    aliases: [storage, khochu]
+  storage:
+    description: Mở kho chứa vật phẩm
+    usage: /<command>
+    aliases: [kho, khochu]
+
+permissions:
+  dnstorage.use:
+    description: Quyền sử dụng kho chứa
+    default: true
+  dnstorage.admin:
+    description: Quyền quản trị kho chứa
+    default: op

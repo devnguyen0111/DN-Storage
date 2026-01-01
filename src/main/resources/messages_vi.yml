@@ -1,0 +1,87 @@
+# File ngôn ngữ Tiếng Việt cho DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lKHO CHỨA VẬT PHẨM"
+gui.category.title: "&6&lKHO CHỨA - {category} &7(Trang {page}/{total})"
+
+# Category Names
+category.ore: "Quặng"
+category.building: "Block Xây Dựng"
+category.wood: "Block Gỗ"
+
+# Messages
+message.storage.opened: "&aSử dụng /kho hoặc /storage để mở kho chứa vật phẩm!"
+message.item.added: "&aĐã thêm &e{amount} &a{item} vào kho!"
+message.item.removed: "&aĐã lấy &e{amount} &a{item} từ kho!"
+message.item.not_storable: "&cVật phẩm này không thể lưu trữ!"
+message.item.not_found: "&cKhông có vật phẩm này trong kho!"
+message.item.wrong_category: "&cDanh mục không đúng! Vật phẩm này thuộc danh mục {category}, không phải danh mục hiện tại."
+message.inventory.full: "&cTúi đồ đã đầy! Một số vật phẩm đã được trả lại vào kho."
+message.items.added_from_inventory: "&aĐã thêm &e{total} &avật phẩm từ &e{count} &aloại vào kho {category}!"
+message.items.none_in_inventory: "&cKhông có vật phẩm nào trong túi đồ thuộc danh mục {category}!"
+
+# Auto Pickup
+autopickup.enabled: "&aĐã bật tự động nhặt vật phẩm vào kho!"
+autopickup.disabled: "&cĐã tắt tự động nhặt vật phẩm vào kho!"
+autopickup.item_picked: "&a[Tự động] Đã thêm &e{amount} &a{item} vào kho!"
+
+# Commands
+command.no_permission: "&cBạn không có quyền sử dụng lệnh này!"
+command.only_player: "&cLệnh này chỉ dành cho người chơi!"
+
+# GUI Buttons
+button.close: "&c&lĐóng"
+button.back: "&e&l◀ Quay lại"
+button.next_page: "&e&lTrang sau ▶▶"
+button.prev_page: "&e&l◀◀ Trang trước"
+button.add_from_inventory: "&a&lThêm Từ Túi Đồ"
+button.autopickup.on: "&a&lTự Động Nhặt: &aBẬT"
+button.autopickup.off: "&7&lTự Động Nhặt: &cTẮT"
+
+# GUI Lore
+lore.item.amount: "&7Số lượng: &a{amount}"
+lore.item.click_left: "&eClick trái: &aLấy 1 stack"
+lore.item.click_right_item: "&eClick phải vào item: &aLấy 1 cái"
+lore.item.click_right_empty: "&7Click phải vào slot trống: &aĐưa vật phẩm vào kho"
+lore.item.shift_click: "&eShift + Click trái: &aLấy tất cả"
+lore.category.item_count: "&7Số loại vật phẩm: &a{count}"
+lore.category.total_amount: "&7Tổng số lượng: &a{amount}"
+lore.category.click_to_open: "&eClick để mở kho {category}"
+lore.autopickup.description: "&7Tự động nhặt vật phẩm rơi&7trên đất vào kho"
+lore.autopickup.status.on: "&a✓ Đang bật"
+lore.autopickup.status.off: "&c✗ Đang tắt"
+lore.autopickup.click_to_toggle: "&eClick để {action}"
+lore.autopickup.toggle.on: "tắt"
+lore.autopickup.toggle.off: "bật"
+lore.add_from_inventory.description: "&7Thêm tất cả vật phẩm\n&7thuộc danh mục này\n&7từ túi đồ vào kho"
+lore.add_from_inventory.click: "&eClick để thêm"
+
+# Database
+database.connected: "Đã kết nối database thành công!"
+database.connection_failed: "Không thể kết nối database!"
+database.driver_not_found: "Không tìm thấy {driver} Driver! Vui lòng đảm bảo driver được include trong JAR."
+database.connection_null: "Connection is null! Không thể thực hiện thao tác database."
+database.cannot_add_item: "Không thể thêm vật phẩm: Connection is null"
+database.cannot_get_amount: "Không thể lấy số lượng vật phẩm: Connection is null"
+database.cannot_update: "Không thể cập nhật số lượng vật phẩm: Connection is null"
+database.cannot_delete: "Không thể xóa vật phẩm: Connection is null"
+database.cannot_get_items: "Không thể lấy danh sách vật phẩm: Connection is null"
+database.connection_closed: "Đã đóng kết nối database!"
+database.reconnect_failed: "Không thể kết nối lại database!"
+
+# Plugin
+plugin.enabled: "DN-Storage đã được kích hoạt!"
+plugin.disabled: "DN-Storage đã được tắt!"
+plugin.language_loaded: "Đã tải ngôn ngữ: {language}"
+plugin.language_key_not_found: "Không tìm thấy key ngôn ngữ: {key}"
+
+# Storage
+storage.invalid_material: "Vật phẩm không hợp lệ: {material}"
+
+# Database Errors
+database.error.add_item: "Lỗi khi thêm vật phẩm vào database!"
+database.error.get_amount: "Lỗi khi lấy số lượng vật phẩm từ database!"
+database.error.update: "Lỗi khi cập nhật số lượng vật phẩm!"
+database.error.delete: "Lỗi khi xóa vật phẩm khỏi database!"
+database.error.get_items: "Lỗi khi lấy danh sách vật phẩm từ database!"
+database.error.close: "Lỗi khi đóng kết nối database!"

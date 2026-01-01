@@ -1,0 +1,17 @@
+# Cấu hình Database cho DN-Storage
+# Chọn loại database: sqlite hoặc mysql
+database:
+  type: sqlite # sqlite hoặc mysql
+
+  # Cấu hình MySQL (chỉ cần khi type = mysql)
+  mysql:
+    host: localhost
+    port: 3306
+    database: dnstorage
+    username: root
+    password: ""
+
+# Cấu hình Ngôn ngữ
+# Chọn ngôn ngữ: vi (Tiếng Việt) hoặc en (English)
+language: vi # vi hoặc en
+
