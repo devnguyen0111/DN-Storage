@@ -1,0 +1,109 @@
+# German Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lOBJEKT-LAGER"
+gui.category.title: "&6&lLAGER - {category} &7(Seite {page}/{total})"
+gui.search.title: "&6&lSUCHE - {category} &7({count} Ergebnisse)"
+
+# Category Names
+category.ore: "Erze"
+category.building: "Baublöcke"
+category.wood: "Holzblöcke"
+
+# Messages
+message.storage.opened: "&aVerwende /kho oder /storage, um das Lager zu öffnen!"
+message.storage.loading: "&7Lade Daten..."
+message.item.added: "&a{amount} &a{item} zum Lager hinzugefügt!"
+message.item.removed: "&a{amount} &a{item} aus dem Lager entfernt!"
+message.item.not_storable: "&cDieser Gegenstand kann nicht gelagert werden!"
+message.item.not_found: "&cDieser Gegenstand ist nicht im Lager!"
+message.item.wrong_category: "&cFalsche Kategorie! Dieser Gegenstand gehört zu {category}, nicht zur aktuellen Kategorie."
+message.inventory.full: "&cDas Inventar ist voll! Einige Gegenstände wurden ins Lager zurückgegeben."
+message.items.added_from_inventory: "&a{total} &aGegenstände von &e{count} &aTypen zum {category} Lager hinzugefügt!"
+message.items.none_in_inventory: "&cKeine Gegenstände im Inventar gehören zur Kategorie {category}!"
+message.sort.success: "&a{total} &aGegenstandstypen im Inventar sortiert!"
+message.sort.no_items: "&cKeine Gegenstände im Inventar zum Sortieren!"
+message.search.placeholder: "Gegenstandsname eingeben..."
+message.search.no_results: "&cKeine Gegenstände gefunden!"
+message.search.results: "&a{count} &aErgebnisse gefunden"
+message.custom_amount.placeholder: "Menge eingeben..."
+message.custom_amount.invalid: "&cUngültige Menge!"
+message.custom_amount.too_much: "&cDie Menge überschreitet die verfügbaren Gegenstände im Lager!"
+message.custom_amount.too_much_inventory: "&cDie Menge überschreitet die verfügbaren Gegenstände im Inventar!"
+message.auto_store.triggered: "&a[Auto] {amount} &a{item} zum Lager hinzugefügt, weil das Inventar voll ist!"
+
+# Auto Pickup
+autopickup.enabled: "&aAutomatisches Aufsammeln aktiviert!"
+autopickup.disabled: "&cAutomatisches Aufsammeln deaktiviert!"
+autopickup.item_picked: "&a[Auto] {amount} &a{item} zum Lager hinzugefügt!"
+
+# Commands
+command.no_permission: "&cDu hast keine Berechtigung, diesen Befehl zu verwenden!"
+command.only_player: "&cDieser Befehl ist nur für Spieler!"
+command.reload.success: "&aConfig und Nachrichten erfolgreich neu geladen!"
+command.reload.failed: "&cPlugin konnte nicht neu geladen werden!"
+
+# GUI Buttons
+button.close: "&c&lSchließen"
+button.back: "&e&l◀ Zurück"
+button.next_page: "&e&lNächste Seite ▶▶"
+button.prev_page: "&e&l◀◀ Vorherige Seite"
+button.add_from_inventory: "&a&lAus Inventar Hinzufügen"
+button.autopickup.on: "&a&lAuto Aufsammeln: &aAN"
+button.autopickup.off: "&7&lAuto Aufsammeln: &cAUS"
+button.search: "&e&l🔍 Suchen"
+button.custom_amount: "&e&lMenge Eingeben"
+button.take_all: "&a&lAlles Nehmen"
+button.sort: "&e&l⚙ Sortieren"
+
+# GUI Lore
+lore.item.amount: "&7Menge: &a{amount}"
+lore.item.click_left: "&eLinksklick: &a1 Stack nehmen"
+lore.item.click_right_item: "&eRechtsklick auf Gegenstand: &a1 Gegenstand nehmen"
+lore.item.click_right_empty: "&7Rechtsklick auf leeren Slot: &aGegenstand ins Lager geben"
+lore.item.shift_click: "&eShift + Linksklick: &aAlles nehmen"
+lore.category.item_count: "&7Gegenstandstypen: &a{count}"
+lore.category.total_amount: "&7Gesamtmenge: &a{amount}"
+lore.category.click_to_open: "&eKlicken, um {category} Lager zu öffnen"
+lore.autopickup.description: "&7Automatisch Gegenstände&7vom Boden ins Lager aufsammeln"
+lore.autopickup.status.on: "&a✓ Aktiviert"
+lore.autopickup.status.off: "&c✗ Deaktiviert"
+lore.autopickup.click_to_toggle: "&eKlicken, um {action}"
+lore.autopickup.toggle.on: "zu deaktivieren"
+lore.autopickup.toggle.off: "zu aktivieren"
+lore.add_from_inventory.description: "&7Alle Gegenstände\n&7dieser Kategorie\n&7vom Inventar ins Lager hinzufügen"
+lore.add_from_inventory.click: "&eKlicken, um hinzuzufügen"
+lore.sort.description: "&7Alle Gegenstände\n&7im Inventar sortieren nach:\n&7- Menge (absteigend)\n&7- Name (alphabetisch)\n&7- Gegenstands-ID (aufsteigend)"
+lore.sort.click: "&eKlicken, um zu sortieren"
+
+# Database
+database.connected: "Erfolgreich mit Datenbank verbunden!"
+database.connection_failed: "Verbindung zur Datenbank fehlgeschlagen!"
+database.driver_not_found: "Driver {driver} nicht gefunden! Stelle sicher, dass der Driver im JAR enthalten ist."
+database.connection_null: "Verbindung ist null! Datenbankoperation kann nicht durchgeführt werden."
+database.cannot_add_item: "Gegenstand kann nicht hinzugefügt werden: Verbindung ist null"
+database.cannot_get_amount: "Menge kann nicht abgerufen werden: Verbindung ist null"
+database.cannot_update: "Menge kann nicht aktualisiert werden: Verbindung ist null"
+database.cannot_delete: "Gegenstand kann nicht gelöscht werden: Verbindung ist null"
+database.cannot_get_items: "Gegenstandsliste kann nicht abgerufen werden: Verbindung ist null"
+database.connection_closed: "Datenbankverbindung geschlossen!"
+database.reconnect_failed: "Wiederverbindung zur Datenbank fehlgeschlagen!"
+
+# Plugin
+plugin.enabled: "DN-Storage wurde aktiviert!"
+plugin.disabled: "DN-Storage wurde deaktiviert!"
+plugin.reloaded: "DN-Storage wurde neu geladen!"
+plugin.language_loaded: "Sprache geladen: {language}"
+plugin.language_key_not_found: "Sprachschlüssel nicht gefunden: {key}"
+
+# Storage
+storage.invalid_material: "Ungültiger Gegenstand: {material}"
+
+# Database Errors
+database.error.add_item: "Fehler beim Hinzufügen des Gegenstands zur Datenbank!"
+database.error.get_amount: "Fehler beim Abrufen der Gegenstandsmenge aus der Datenbank!"
+database.error.update: "Fehler beim Aktualisieren der Gegenstandsmenge!"
+database.error.delete: "Fehler beim Löschen des Gegenstands aus der Datenbank!"
+database.error.get_items: "Fehler beim Abrufen der Gegenstandsliste aus der Datenbank!"
+database.error.close: "Fehler beim Schließen der Datenbankverbindung!"
+

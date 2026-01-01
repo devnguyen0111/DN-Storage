@@ -1,0 +1,109 @@
+# French Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lSTOCKAGE D'OBJETS"
+gui.category.title: "&6&lSTOCKAGE - {category} &7(Page {page}/{total})"
+gui.search.title: "&6&lRECHERCHE - {category} &7({count} résultats)"
+
+# Category Names
+category.ore: "Minerais"
+category.building: "Blocs de Construction"
+category.wood: "Blocs de Bois"
+
+# Messages
+message.storage.opened: "&aUtilisez /kho ou /storage pour ouvrir le stockage!"
+message.storage.loading: "&7Chargement des données..."
+message.item.added: "&aAjouté &e{amount} &a{item} au stockage!"
+message.item.removed: "&aRécupéré &e{amount} &a{item} du stockage!"
+message.item.not_storable: "&cCet objet ne peut pas être stocké!"
+message.item.not_found: "&cCet objet n'est pas dans le stockage!"
+message.item.wrong_category: "&cMauvaise catégorie! Cet objet appartient à {category}, pas à la catégorie actuelle."
+message.inventory.full: "&cL'inventaire est plein! Certains objets ont été renvoyés au stockage."
+message.items.added_from_inventory: "&aAjouté &e{total} &aobjets de &e{count} &atypes au stockage {category}!"
+message.items.none_in_inventory: "&cAucun objet dans l'inventaire n'appartient à la catégorie {category}!"
+message.sort.success: "&aTrié &e{total} &atypes d'objets dans l'inventaire!"
+message.sort.no_items: "&cAucun objet dans l'inventaire à trier!"
+message.search.placeholder: "Entrez le nom de l'objet..."
+message.search.no_results: "&cAucun objet trouvé!"
+message.search.results: "&aTrouvé &e{count} &arésultats"
+message.custom_amount.placeholder: "Entrez la quantité..."
+message.custom_amount.invalid: "&cQuantité invalide!"
+message.custom_amount.too_much: "&cLa quantité dépasse les objets disponibles dans le stockage!"
+message.custom_amount.too_much_inventory: "&cLa quantité dépasse les objets disponibles dans l'inventaire!"
+message.auto_store.triggered: "&a[Auto] Ajouté &e{amount} &a{item} au stockage car l'inventaire est plein!"
+
+# Auto Pickup
+autopickup.enabled: "&aRamassage automatique activé!"
+autopickup.disabled: "&cRamassage automatique désactivé!"
+autopickup.item_picked: "&a[Auto] Ajouté &e{amount} &a{item} au stockage!"
+
+# Commands
+command.no_permission: "&cVous n'avez pas la permission d'utiliser cette commande!"
+command.only_player: "&cCette commande est réservée aux joueurs!"
+command.reload.success: "&aConfig et messages rechargés avec succès!"
+command.reload.failed: "&cImpossible de recharger le plugin!"
+
+# GUI Buttons
+button.close: "&c&lFermer"
+button.back: "&e&l◀ Retour"
+button.next_page: "&e&lPage suivante ▶▶"
+button.prev_page: "&e&l◀◀ Page précédente"
+button.add_from_inventory: "&a&lAjouter de l'Inventaire"
+button.autopickup.on: "&a&lRamassage Auto: &aON"
+button.autopickup.off: "&7&lRamassage Auto: &cOFF"
+button.search: "&e&l🔍 Rechercher"
+button.custom_amount: "&e&lEntrer la Quantité"
+button.take_all: "&a&lTout Prendre"
+button.sort: "&e&l⚙ Trier"
+
+# GUI Lore
+lore.item.amount: "&7Quantité: &a{amount}"
+lore.item.click_left: "&eClic gauche: &aRécupérer 1 stack"
+lore.item.click_right_item: "&eClic droit sur objet: &aRécupérer 1 objet"
+lore.item.click_right_empty: "&7Clic droit sur slot vide: &aAjouter objet au stockage"
+lore.item.shift_click: "&eShift + Clic gauche: &aRécupérer tout"
+lore.category.item_count: "&7Types d'objets: &a{count}"
+lore.category.total_amount: "&7Quantité totale: &a{amount}"
+lore.category.click_to_open: "&eCliquez pour ouvrir le stockage {category}"
+lore.autopickup.description: "&7Ramasser automatiquement les objets&7tombés au sol dans le stockage"
+lore.autopickup.status.on: "&a✓ Activé"
+lore.autopickup.status.off: "&c✗ Désactivé"
+lore.autopickup.click_to_toggle: "&eCliquez pour {action}"
+lore.autopickup.toggle.on: "désactiver"
+lore.autopickup.toggle.off: "activer"
+lore.add_from_inventory.description: "&7Ajouter tous les objets\n&7de cette catégorie\n&7de l'inventaire au stockage"
+lore.add_from_inventory.click: "&eCliquez pour ajouter"
+lore.sort.description: "&7Trier tous les objets\n&7dans l'inventaire par:\n&7- Quantité (décroissant)\n&7- Nom (alphabétique)\n&7- ID d'objet (croissant)"
+lore.sort.click: "&eCliquez pour trier"
+
+# Database
+database.connected: "Connexion à la base de données réussie!"
+database.connection_failed: "Échec de la connexion à la base de données!"
+database.driver_not_found: "Impossible de trouver le Driver {driver}! Assurez-vous que le driver est inclus dans le JAR."
+database.connection_null: "La connexion est nulle! Impossible d'effectuer l'opération de base de données."
+database.cannot_add_item: "Impossible d'ajouter l'objet: La connexion est nulle"
+database.cannot_get_amount: "Impossible d'obtenir la quantité de l'objet: La connexion est nulle"
+database.cannot_update: "Impossible de mettre à jour la quantité de l'objet: La connexion est nulle"
+database.cannot_delete: "Impossible de supprimer l'objet: La connexion est nulle"
+database.cannot_get_items: "Impossible d'obtenir la liste des objets: La connexion est nulle"
+database.connection_closed: "Connexion à la base de données fermée!"
+database.reconnect_failed: "Impossible de se reconnecter à la base de données!"
+
+# Plugin
+plugin.enabled: "DN-Storage a été activé!"
+plugin.disabled: "DN-Storage a été désactivé!"
+plugin.reloaded: "DN-Storage a été rechargé!"
+plugin.language_loaded: "Langue chargée: {language}"
+plugin.language_key_not_found: "Clé de langue non trouvée: {key}"
+
+# Storage
+storage.invalid_material: "Objet invalide: {material}"
+
+# Database Errors
+database.error.add_item: "Erreur lors de l'ajout de l'objet à la base de données!"
+database.error.get_amount: "Erreur lors de la récupération de la quantité de l'objet de la base de données!"
+database.error.update: "Erreur lors de la mise à jour de la quantité de l'objet!"
+database.error.delete: "Erreur lors de la suppression de l'objet de la base de données!"
+database.error.get_items: "Erreur lors de la récupération de la liste des objets de la base de données!"
+database.error.close: "Erreur lors de la fermeture de la connexion à la base de données!"
+

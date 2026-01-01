@@ -1,0 +1,109 @@
+# Korean Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&l아이템 저장소"
+gui.category.title: "&6&l저장소 - {category} &7(페이지 {page}/{total})"
+gui.search.title: "&6&l검색 - {category} &7({count} 결과)"
+
+# Category Names
+category.ore: "광물"
+category.building: "건축 블록"
+category.wood: "나무 블록"
+
+# Messages
+message.storage.opened: "&a/kho 또는 /storage를 사용하여 아이템 저장소를 열어주세요!"
+message.storage.loading: "&7데이터 로딩 중..."
+message.item.added: "&a{amount} &a개의 {item}을(를) 저장소에 추가했습니다!"
+message.item.removed: "&a저장소에서 {amount} &a개의 {item}을(를) 가져왔습니다!"
+message.item.not_storable: "&c이 아이템은 저장할 수 없습니다!"
+message.item.not_found: "&c이 아이템은 저장소에 없습니다!"
+message.item.wrong_category: "&c잘못된 카테고리입니다! 이 아이템은 {category}에 속하며 현재 카테고리가 아닙니다."
+message.inventory.full: "&c인벤토리가 가득 찼습니다! 일부 아이템이 저장소로 반환되었습니다."
+message.items.added_from_inventory: "&a{total} &a개의 아이템, {count} &a가지 유형을 {category} 저장소에 추가했습니다!"
+message.items.none_in_inventory: "&c인벤토리에 {category} 카테고리의 아이템이 없습니다!"
+message.sort.success: "&a인벤토리에서 &e{total} &a가지 아이템 유형을 정렬했습니다!"
+message.sort.no_items: "&c인벤토리에 정렬할 아이템이 없습니다!"
+message.search.placeholder: "아이템 이름 입력..."
+message.search.no_results: "&c아이템을 찾을 수 없습니다!"
+message.search.results: "&a{count} &a개의 결과를 찾았습니다"
+message.custom_amount.placeholder: "수량 입력..."
+message.custom_amount.invalid: "&c유효하지 않은 수량입니다!"
+message.custom_amount.too_much: "&c수량이 저장소의 사용 가능한 아이템을 초과합니다!"
+message.custom_amount.too_much_inventory: "&c수량이 인벤토리의 사용 가능한 아이템을 초과합니다!"
+message.auto_store.triggered: "&a[자동] 인벤토리가 가득 차서 {amount} &a개의 {item}을(를) 저장소에 추가했습니다!"
+
+# Auto Pickup
+autopickup.enabled: "&a자동 수집이 활성화되었습니다!"
+autopickup.disabled: "&c자동 수집이 비활성화되었습니다!"
+autopickup.item_picked: "&a[자동] {amount} &a개의 {item}을(를) 저장소에 추가했습니다!"
+
+# Commands
+command.no_permission: "&c이 명령을 사용할 권한이 없습니다!"
+command.only_player: "&c이 명령은 플레이어만 사용할 수 있습니다!"
+command.reload.success: "&a설정과 메시지를 성공적으로 다시 로드했습니다!"
+command.reload.failed: "&c플러그인을 다시 로드할 수 없습니다!"
+
+# GUI Buttons
+button.close: "&c&l닫기"
+button.back: "&e&l◀ 뒤로"
+button.next_page: "&e&l다음 페이지 ▶▶"
+button.prev_page: "&e&l◀◀ 이전 페이지"
+button.add_from_inventory: "&a&l인벤토리에서 추가"
+button.autopickup.on: "&a&l자동 수집: &a켜짐"
+button.autopickup.off: "&7&l자동 수집: &c꺼짐"
+button.search: "&e&l🔍 검색"
+button.custom_amount: "&e&l수량 입력"
+button.take_all: "&a&l모두 가져가기"
+button.sort: "&e&l⚙ 정렬"
+
+# GUI Lore
+lore.item.amount: "&7수량: &a{amount}"
+lore.item.click_left: "&e좌클릭: &a1 스택 가져가기"
+lore.item.click_right_item: "&e아이템 우클릭: &a1개 가져가기"
+lore.item.click_right_empty: "&7빈 슬롯 우클릭: &a아이템을 저장소에 추가"
+lore.item.shift_click: "&eShift + 좌클릭: &a모두 가져가기"
+lore.category.item_count: "&7아이템 유형: &a{count}"
+lore.category.total_amount: "&7총 수량: &a{amount}"
+lore.category.click_to_open: "&e클릭하여 {category} 저장소 열기"
+lore.autopickup.description: "&7땅에 떨어진 아이템을&7자동으로 저장소에 수집"
+lore.autopickup.status.on: "&a✓ 활성화됨"
+lore.autopickup.status.off: "&c✗ 비활성화됨"
+lore.autopickup.click_to_toggle: "&e클릭하여 {action}"
+lore.autopickup.toggle.on: "비활성화"
+lore.autopickup.toggle.off: "활성화"
+lore.add_from_inventory.description: "&7이 카테고리의 모든 아이템을\n&7인벤토리에서 저장소로 추가"
+lore.add_from_inventory.click: "&e클릭하여 추가"
+lore.sort.description: "&7인벤토리의 모든 아이템을\n&7다음 순서로 정렬:\n&7- 수량 (내림차순)\n&7- 이름 (알파벳 순)\n&7- 아이템 ID (오름차순)"
+lore.sort.click: "&e클릭하여 정렬"
+
+# Database
+database.connected: "데이터베이스 연결 성공!"
+database.connection_failed: "데이터베이스 연결 실패!"
+database.driver_not_found: "{driver} 드라이버를 찾을 수 없습니다! JAR에 드라이버가 포함되어 있는지 확인하세요."
+database.connection_null: "연결이 null입니다! 데이터베이스 작업을 수행할 수 없습니다."
+database.cannot_add_item: "아이템을 추가할 수 없습니다: 연결이 null입니다"
+database.cannot_get_amount: "아이템 수량을 가져올 수 없습니다: 연결이 null입니다"
+database.cannot_update: "아이템 수량을 업데이트할 수 없습니다: 연결이 null입니다"
+database.cannot_delete: "아이템을 삭제할 수 없습니다: 연결이 null입니다"
+database.cannot_get_items: "아이템 목록을 가져올 수 없습니다: 연결이 null입니다"
+database.connection_closed: "데이터베이스 연결이 닫혔습니다!"
+database.reconnect_failed: "데이터베이스에 재연결할 수 없습니다!"
+
+# Plugin
+plugin.enabled: "DN-Storage가 활성화되었습니다!"
+plugin.disabled: "DN-Storage가 비활성화되었습니다!"
+plugin.reloaded: "DN-Storage가 다시 로드되었습니다!"
+plugin.language_loaded: "언어 로드됨: {language}"
+plugin.language_key_not_found: "언어 키를 찾을 수 없습니다: {key}"
+
+# Storage
+storage.invalid_material: "유효하지 않은 아이템: {material}"
+
+# Database Errors
+database.error.add_item: "데이터베이스에 아이템을 추가하는 중 오류 발생!"
+database.error.get_amount: "데이터베이스에서 아이템 수량을 가져오는 중 오류 발생!"
+database.error.update: "아이템 수량을 업데이트하는 중 오류 발생!"
+database.error.delete: "데이터베이스에서 아이템을 삭제하는 중 오류 발생!"
+database.error.get_items: "데이터베이스에서 아이템 목록을 가져오는 중 오류 발생!"
+database.error.close: "데이터베이스 연결을 닫는 중 오류 발생!"
+

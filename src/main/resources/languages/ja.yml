@@ -1,0 +1,109 @@
+# Japanese Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lアイテムストレージ"
+gui.category.title: "&6&lストレージ - {category} &7(ページ {page}/{total})"
+gui.search.title: "&6&l検索 - {category} &7({count} 結果)"
+
+# Category Names
+category.ore: "鉱石"
+category.building: "建築ブロック"
+category.wood: "木材ブロック"
+
+# Messages
+message.storage.opened: "&a/kho または /storage を使用してアイテムストレージを開く！"
+message.storage.loading: "&7データを読み込み中..."
+message.item.added: "&a{amount} &a個の {item} をストレージに追加しました！"
+message.item.removed: "&aストレージから {amount} &a個の {item} を取り出しました！"
+message.item.not_storable: "&cこのアイテムは保存できません！"
+message.item.not_found: "&cこのアイテムはストレージにありません！"
+message.item.wrong_category: "&cカテゴリが間違っています！このアイテムは {category} に属しますが、現在のカテゴリではありません。"
+message.inventory.full: "&cインベントリが満杯です！一部のアイテムがストレージに戻されました。"
+message.items.added_from_inventory: "&a{total} &a個のアイテム、{count} &a種類を {category} ストレージに追加しました！"
+message.items.none_in_inventory: "&cインベントリに {category} カテゴリのアイテムがありません！"
+message.sort.success: "&aインベントリ内の &e{total} &a種類のアイテムを並び替えました！"
+message.sort.no_items: "&cインベントリに並び替えるアイテムがありません！"
+message.search.placeholder: "アイテム名を入力..."
+message.search.no_results: "&cアイテムが見つかりませんでした！"
+message.search.results: "&a{count} &a件の結果が見つかりました"
+message.custom_amount.placeholder: "数量を入力..."
+message.custom_amount.invalid: "&c無効な数量です！"
+message.custom_amount.too_much: "&c数量がストレージ内の利用可能なアイテムを超えています！"
+message.custom_amount.too_much_inventory: "&c数量がインベントリ内の利用可能なアイテムを超えています！"
+message.auto_store.triggered: "&a[自動] インベントリが満杯のため、{amount} &a個の {item} をストレージに追加しました！"
+
+# Auto Pickup
+autopickup.enabled: "&a自動拾取が有効になりました！"
+autopickup.disabled: "&c自動拾取が無効になりました！"
+autopickup.item_picked: "&a[自動] {amount} &a個の {item} をストレージに追加しました！"
+
+# Commands
+command.no_permission: "&cこのコマンドを使用する権限がありません！"
+command.only_player: "&cこのコマンドはプレイヤーのみ使用できます！"
+command.reload.success: "&a設定とメッセージを正常に再読み込みしました！"
+command.reload.failed: "&cプラグインを再読み込みできませんでした！"
+
+# GUI Buttons
+button.close: "&c&l閉じる"
+button.back: "&e&l◀ 戻る"
+button.next_page: "&e&l次のページ ▶▶"
+button.prev_page: "&e&l◀◀ 前のページ"
+button.add_from_inventory: "&a&lインベントリから追加"
+button.autopickup.on: "&a&l自動拾取: &aON"
+button.autopickup.off: "&7&l自動拾取: &cOFF"
+button.search: "&e&l🔍 検索"
+button.custom_amount: "&e&l数量を入力"
+button.take_all: "&a&lすべて取得"
+button.sort: "&e&l⚙ 並び替え"
+
+# GUI Lore
+lore.item.amount: "&7数量: &a{amount}"
+lore.item.click_left: "&e左クリック: &a1スタック取得"
+lore.item.click_right_item: "&eアイテムを右クリック: &a1個取得"
+lore.item.click_right_empty: "&7空のスロットを右クリック: &aアイテムをストレージに追加"
+lore.item.shift_click: "&eShift + 左クリック: &aすべて取得"
+lore.category.item_count: "&7アイテムタイプ: &a{count}"
+lore.category.total_amount: "&7総数量: &a{amount}"
+lore.category.click_to_open: "&eクリックして {category} ストレージを開く"
+lore.autopickup.description: "&7地面に落ちたアイテムを&7自動的にストレージに拾う"
+lore.autopickup.status.on: "&a✓ 有効"
+lore.autopickup.status.off: "&c✗ 無効"
+lore.autopickup.click_to_toggle: "&eクリックして{action}"
+lore.autopickup.toggle.on: "無効化"
+lore.autopickup.toggle.off: "有効化"
+lore.add_from_inventory.description: "&7このカテゴリのすべてのアイテムを\n&7インベントリからストレージに追加"
+lore.add_from_inventory.click: "&eクリックして追加"
+lore.sort.description: "&7インベントリ内のすべてのアイテムを\n&7次の順序で並び替え:\n&7- 数量 (降順)\n&7- 名前 (アルファベット順)\n&7- アイテムID (昇順)"
+lore.sort.click: "&eクリックして並び替え"
+
+# Database
+database.connected: "データベースへの接続に成功しました！"
+database.connection_failed: "データベースへの接続に失敗しました！"
+database.driver_not_found: "{driver} ドライバーが見つかりません！JARにドライバーが含まれていることを確認してください。"
+database.connection_null: "接続がnullです！データベース操作を実行できません。"
+database.cannot_add_item: "アイテムを追加できません: 接続がnullです"
+database.cannot_get_amount: "アイテムの数量を取得できません: 接続がnullです"
+database.cannot_update: "アイテムの数量を更新できません: 接続がnullです"
+database.cannot_delete: "アイテムを削除できません: 接続がnullです"
+database.cannot_get_items: "アイテムリストを取得できません: 接続がnullです"
+database.connection_closed: "データベース接続が閉じられました！"
+database.reconnect_failed: "データベースに再接続できませんでした！"
+
+# Plugin
+plugin.enabled: "DN-Storageが有効になりました！"
+plugin.disabled: "DN-Storageが無効になりました！"
+plugin.reloaded: "DN-Storageが再読み込みされました！"
+plugin.language_loaded: "言語が読み込まれました: {language}"
+plugin.language_key_not_found: "言語キーが見つかりません: {key}"
+
+# Storage
+storage.invalid_material: "無効なアイテム: {material}"
+
+# Database Errors
+database.error.add_item: "データベースにアイテムを追加する際にエラーが発生しました！"
+database.error.get_amount: "データベースからアイテムの数量を取得する際にエラーが発生しました！"
+database.error.update: "アイテムの数量を更新する際にエラーが発生しました！"
+database.error.delete: "データベースからアイテムを削除する際にエラーが発生しました！"
+database.error.get_items: "データベースからアイテムリストを取得する際にエラーが発生しました！"
+database.error.close: "データベース接続を閉じる際にエラーが発生しました！"
+

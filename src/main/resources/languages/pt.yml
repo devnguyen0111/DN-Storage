@@ -1,0 +1,109 @@
+# Portuguese Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&lARMAZÉM DE ITENS"
+gui.category.title: "&6&lARMAZÉM - {category} &7(Página {page}/{total})"
+gui.search.title: "&6&lBUSCAR - {category} &7({count} resultados)"
+
+# Category Names
+category.ore: "Minérios"
+category.building: "Blocos de Construção"
+category.wood: "Blocos de Madeira"
+
+# Messages
+message.storage.opened: "&aUse /kho ou /storage para abrir o armazém!"
+message.storage.loading: "&7Carregando dados..."
+message.item.added: "&aAdicionado &e{amount} &a{item} ao armazém!"
+message.item.removed: "&aRetirado &e{amount} &a{item} do armazém!"
+message.item.not_storable: "&cEste item não pode ser armazenado!"
+message.item.not_found: "&cEste item não está no armazém!"
+message.item.wrong_category: "&cCategoria errada! Este item pertence a {category}, não à categoria atual."
+message.inventory.full: "&cO inventário está cheio! Alguns itens foram devolvidos ao armazém."
+message.items.added_from_inventory: "&aAdicionado &e{total} &aitens de &e{count} &atipos ao armazém {category}!"
+message.items.none_in_inventory: "&cNenhum item no inventário pertence à categoria {category}!"
+message.sort.success: "&aOrdenados &e{total} &atipos de itens no inventário!"
+message.sort.no_items: "&cNenhum item no inventário para ordenar!"
+message.search.placeholder: "Digite o nome do item..."
+message.search.no_results: "&cNenhum item encontrado!"
+message.search.results: "&aEncontrado &e{count} &aresultados"
+message.custom_amount.placeholder: "Digite a quantidade..."
+message.custom_amount.invalid: "&cQuantidade inválida!"
+message.custom_amount.too_much: "&cA quantidade excede os itens disponíveis no armazém!"
+message.custom_amount.too_much_inventory: "&cA quantidade excede os itens disponíveis no inventário!"
+message.auto_store.triggered: "&a[Auto] Adicionado &e{amount} &a{item} ao armazém porque o inventário está cheio!"
+
+# Auto Pickup
+autopickup.enabled: "&aColeta automática ativada!"
+autopickup.disabled: "&cColeta automática desativada!"
+autopickup.item_picked: "&a[Auto] Adicionado &e{amount} &a{item} ao armazém!"
+
+# Commands
+command.no_permission: "&cVocê não tem permissão para usar este comando!"
+command.only_player: "&cEste comando é apenas para jogadores!"
+command.reload.success: "&aConfig e mensagens recarregados com sucesso!"
+command.reload.failed: "&cNão foi possível recarregar o plugin!"
+
+# GUI Buttons
+button.close: "&c&lFechar"
+button.back: "&e&l◀ Voltar"
+button.next_page: "&e&lPróxima Página ▶▶"
+button.prev_page: "&e&l◀◀ Página Anterior"
+button.add_from_inventory: "&a&lAdicionar do Inventário"
+button.autopickup.on: "&a&lColeta Auto: &aLIGADO"
+button.autopickup.off: "&7&lColeta Auto: &cDESLIGADO"
+button.search: "&e&l🔍 Buscar"
+button.custom_amount: "&e&lDigitar Quantidade"
+button.take_all: "&a&lPegar Tudo"
+button.sort: "&e&l⚙ Ordenar"
+
+# GUI Lore
+lore.item.amount: "&7Quantidade: &a{amount}"
+lore.item.click_left: "&eClique esquerdo: &aRetirar 1 stack"
+lore.item.click_right_item: "&eClique direito no item: &aRetirar 1 item"
+lore.item.click_right_empty: "&7Clique direito no slot vazio: &aAdicionar item ao armazém"
+lore.item.shift_click: "&eShift + Clique esquerdo: &aRetirar tudo"
+lore.category.item_count: "&7Tipos de itens: &a{count}"
+lore.category.total_amount: "&7Quantidade total: &a{amount}"
+lore.category.click_to_open: "&eClique para abrir armazém {category}"
+lore.autopickup.description: "&7Coletar automaticamente itens&7caídos no chão no armazém"
+lore.autopickup.status.on: "&a✓ Ativado"
+lore.autopickup.status.off: "&c✗ Desativado"
+lore.autopickup.click_to_toggle: "&eClique para {action}"
+lore.autopickup.toggle.on: "desativar"
+lore.autopickup.toggle.off: "ativar"
+lore.add_from_inventory.description: "&7Adicionar todos os itens\n&7desta categoria\n&7do inventário ao armazém"
+lore.add_from_inventory.click: "&eClique para adicionar"
+lore.sort.description: "&7Ordenar todos os itens\n&7no inventário por:\n&7- Quantidade (decrescente)\n&7- Nome (alfabético)\n&7- ID do item (crescente)"
+lore.sort.click: "&eClique para ordenar"
+
+# Database
+database.connected: "Conectado ao banco de dados com sucesso!"
+database.connection_failed: "Falha ao conectar ao banco de dados!"
+database.driver_not_found: "Driver {driver} não encontrado! Certifique-se de que o driver está incluído no JAR."
+database.connection_null: "A conexão é nula! Não é possível realizar a operação do banco de dados."
+database.cannot_add_item: "Não é possível adicionar item: A conexão é nula"
+database.cannot_get_amount: "Não é possível obter a quantidade do item: A conexão é nula"
+database.cannot_update: "Não é possível atualizar a quantidade do item: A conexão é nula"
+database.cannot_delete: "Não é possível excluir item: A conexão é nula"
+database.cannot_get_items: "Não é possível obter a lista de itens: A conexão é nula"
+database.connection_closed: "Conexão com o banco de dados fechada!"
+database.reconnect_failed: "Não é possível reconectar ao banco de dados!"
+
+# Plugin
+plugin.enabled: "DN-Storage foi ativado!"
+plugin.disabled: "DN-Storage foi desativado!"
+plugin.reloaded: "DN-Storage foi recarregado!"
+plugin.language_loaded: "Idioma carregado: {language}"
+plugin.language_key_not_found: "Chave de idioma não encontrada: {key}"
+
+# Storage
+storage.invalid_material: "Item inválido: {material}"
+
+# Database Errors
+database.error.add_item: "Erro ao adicionar item ao banco de dados!"
+database.error.get_amount: "Erro ao obter a quantidade do item do banco de dados!"
+database.error.update: "Erro ao atualizar a quantidade do item!"
+database.error.delete: "Erro ao excluir item do banco de dados!"
+database.error.get_items: "Erro ao obter a lista de itens do banco de dados!"
+database.error.close: "Erro ao fechar a conexão com o banco de dados!"
+

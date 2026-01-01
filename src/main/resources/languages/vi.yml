@@ -3,6 +3,7 @@
 # GUI Titles
 gui.main.title: "&6&lKHO CHỨA VẬT PHẨM"
 gui.category.title: "&6&lKHO CHỨA - {category} &7(Trang {page}/{total})"
+gui.search.title: "&6&lTÌM KIẾM - {category} &7({count} kết quả)"
 
 # Category Names
 category.ore: "Quặng"
@@ -11,6 +12,7 @@ category.wood: "Block Gỗ"
 
 # Messages
 message.storage.opened: "&aSử dụng /kho hoặc /storage để mở kho chứa vật phẩm!"
+message.storage.loading: "&7Đang tải dữ liệu..."
 message.item.added: "&aĐã thêm &e{amount} &a{item} vào kho!"
 message.item.removed: "&aĐã lấy &e{amount} &a{item} từ kho!"
 message.item.not_storable: "&cVật phẩm này không thể lưu trữ!"
@@ -19,6 +21,16 @@ message.item.wrong_category: "&cDanh mục không đúng! Vật phẩm này thu�
 message.inventory.full: "&cTúi đồ đã đầy! Một số vật phẩm đã được trả lại vào kho."
 message.items.added_from_inventory: "&aĐã thêm &e{total} &avật phẩm từ &e{count} &aloại vào kho {category}!"
 message.items.none_in_inventory: "&cKhông có vật phẩm nào trong túi đồ thuộc danh mục {category}!"
+message.sort.success: "&aĐã sắp xếp &e{total} &aloại vật phẩm trong túi đồ!"
+message.sort.no_items: "&cKhông có vật phẩm nào trong túi đồ để sắp xếp!"
+message.search.placeholder: "Nhập tên vật phẩm..."
+message.search.no_results: "&cKhông tìm thấy vật phẩm nào!"
+message.search.results: "&aTìm thấy &e{count} &akết quả"
+message.custom_amount.placeholder: "Nhập số lượng..."
+message.custom_amount.invalid: "&cSố lượng không hợp lệ!"
+message.custom_amount.too_much: "&cSố lượng vượt quá số lượng có trong kho!"
+message.custom_amount.too_much_inventory: "&cSố lượng vượt quá số lượng có trong túi đồ!"
+message.auto_store.triggered: "&a[Tự động] Đã đưa &e{amount} &a{item} vào kho vì túi đồ đầy!"
 
 # Auto Pickup
 autopickup.enabled: "&aĐã bật tự động nhặt vật phẩm vào kho!"
@@ -28,6 +40,8 @@ autopickup.item_picked: "&a[Tự động] Đã thêm &e{amount} &a{item} vào kh
 # Commands
 command.no_permission: "&cBạn không có quyền sử dụng lệnh này!"
 command.only_player: "&cLệnh này chỉ dành cho người chơi!"
+command.reload.success: "&aĐã reload config và messages thành công!"
+command.reload.failed: "&cKhông thể reload plugin!"
 
 # GUI Buttons
 button.close: "&c&lĐóng"
@@ -37,6 +51,10 @@ button.prev_page: "&e&l◀◀ Trang trước"
 button.add_from_inventory: "&a&lThêm Từ Túi Đồ"
 button.autopickup.on: "&a&lTự Động Nhặt: &aBẬT"
 button.autopickup.off: "&7&lTự Động Nhặt: &cTẮT"
+button.search: "&e&l🔍 Tìm Kiếm"
+button.custom_amount: "&e&lNhập Số Lượng"
+button.take_all: "&a&lLấy Tất Cả"
+button.sort: "&e&l⚙ Sắp Xếp"
 
 # GUI Lore
 lore.item.amount: "&7Số lượng: &a{amount}"
@@ -55,6 +73,8 @@ lore.autopickup.toggle.on: "tắt"
 lore.autopickup.toggle.off: "bật"
 lore.add_from_inventory.description: "&7Thêm tất cả vật phẩm\n&7thuộc danh mục này\n&7từ túi đồ vào kho"
 lore.add_from_inventory.click: "&eClick để thêm"
+lore.sort.description: "&7Sắp xếp tất cả vật phẩm\n&7trong túi đồ theo:\n&7- Số lượng (giảm dần)\n&7- Tên (bảng chữ cái)\n&7- Item ID (tăng dần)"
+lore.sort.click: "&eClick để sắp xếp"
 
 # Database
 database.connected: "Đã kết nối database thành công!"
@@ -72,6 +92,7 @@ database.reconnect_failed: "Không thể kết nối lại database!"
 # Plugin
 plugin.enabled: "DN-Storage đã được kích hoạt!"
 plugin.disabled: "DN-Storage đã được tắt!"
+plugin.reloaded: "DN-Storage đã được reload!"
 plugin.language_loaded: "Đã tải ngôn ngữ: {language}"
 plugin.language_key_not_found: "Không tìm thấy key ngôn ngữ: {key}"
 
@@ -85,3 +106,4 @@ database.error.update: "Lỗi khi cập nhật số lượng vật phẩm!"
 database.error.delete: "Lỗi khi xóa vật phẩm khỏi database!"
 database.error.get_items: "Lỗi khi lấy danh sách vật phẩm từ database!"
 database.error.close: "Lỗi khi đóng kết nối database!"
+

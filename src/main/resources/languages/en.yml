@@ -3,6 +3,7 @@
 # GUI Titles
 gui.main.title: "&6&lITEM STORAGE"
 gui.category.title: "&6&lSTORAGE - {category} &7(Page {page}/{total})"
+gui.search.title: "&6&lSEARCH - {category} &7({count} results)"
 
 # Category Names
 category.ore: "Ores"
@@ -11,6 +12,7 @@ category.wood: "Wood Blocks"
 
 # Messages
 message.storage.opened: "&aUse /kho or /storage to open item storage!"
+message.storage.loading: "&7Loading data..."
 message.item.added: "&aAdded &e{amount} &a{item} to storage!"
 message.item.removed: "&aRetrieved &e{amount} &a{item} from storage!"
 message.item.not_storable: "&cThis item cannot be stored!"
@@ -19,6 +21,16 @@ message.item.wrong_category: "&cWrong category! This item belongs to {category},
 message.inventory.full: "&cInventory is full! Some items have been returned to storage."
 message.items.added_from_inventory: "&aAdded &e{total} &aitems from &e{count} &atypes to {category} storage!"
 message.items.none_in_inventory: "&cNo items in inventory belong to {category} category!"
+message.sort.success: "&aSorted &e{total} &aitem types in inventory!"
+message.sort.no_items: "&cNo items in inventory to sort!"
+message.search.placeholder: "Enter item name..."
+message.search.no_results: "&cNo items found!"
+message.search.results: "&aFound &e{count} &aresults"
+message.custom_amount.placeholder: "Enter amount..."
+message.custom_amount.invalid: "&cInvalid amount!"
+message.custom_amount.too_much: "&cAmount exceeds available items in storage!"
+message.custom_amount.too_much_inventory: "&cAmount exceeds available items in inventory!"
+message.auto_store.triggered: "&a[Auto] Added &e{amount} &a{item} to storage because inventory is full!"
 
 # Auto Pickup
 autopickup.enabled: "&aAuto pickup enabled!"
@@ -28,6 +40,8 @@ autopickup.item_picked: "&a[Auto] Added &e{amount} &a{item} to storage!"
 # Commands
 command.no_permission: "&cYou don't have permission to use this command!"
 command.only_player: "&cThis command is only for players!"
+command.reload.success: "&aSuccessfully reloaded config and messages!"
+command.reload.failed: "&cFailed to reload plugin!"
 
 # GUI Buttons
 button.close: "&c&lClose"
@@ -37,6 +51,10 @@ button.prev_page: "&e&l◀◀ Previous Page"
 button.add_from_inventory: "&a&lAdd From Inventory"
 button.autopickup.on: "&a&lAuto Pickup: &aON"
 button.autopickup.off: "&7&lAuto Pickup: &cOFF"
+button.search: "&e&l🔍 Search"
+button.custom_amount: "&e&lEnter Amount"
+button.take_all: "&a&lTake All"
+button.sort: "&e&l⚙ Sort"
 
 # GUI Lore
 lore.item.amount: "&7Amount: &a{amount}"
@@ -55,6 +73,8 @@ lore.autopickup.toggle.on: "disable"
 lore.autopickup.toggle.off: "enable"
 lore.add_from_inventory.description: "&7Add all items\n&7in this category\n&7from inventory to storage"
 lore.add_from_inventory.click: "&eClick to add"
+lore.sort.description: "&7Sort all items in inventory by:\n&7- Quantity (descending)\n&7- Name (alphabetical)\n&7- Item ID (ascending)"
+lore.sort.click: "&eClick to sort"
 
 # Database
 database.connected: "Successfully connected to database!"
@@ -72,6 +92,7 @@ database.reconnect_failed: "Cannot reconnect to database!"
 # Plugin
 plugin.enabled: "DN-Storage has been enabled!"
 plugin.disabled: "DN-Storage has been disabled!"
+plugin.reloaded: "DN-Storage has been reloaded!"
 plugin.language_loaded: "Language loaded: {language}"
 plugin.language_key_not_found: "Language key not found: {key}"
 
@@ -85,3 +106,4 @@ database.error.update: "Error updating item amount!"
 database.error.delete: "Error deleting item from database!"
 database.error.get_items: "Error getting item list from database!"
 database.error.close: "Error closing database connection!"
+

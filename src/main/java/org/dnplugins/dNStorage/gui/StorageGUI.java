@@ -1,4 +1,4 @@
-package org.dnplugins.dNStorage;
+package org.dnplugins.dNStorage.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -11,6 +11,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.dnplugins.dNStorage.core.LanguageManager;
+import org.dnplugins.dNStorage.core.SoundManager;
+import org.dnplugins.dNStorage.core.StorageManager;
+import org.dnplugins.dNStorage.enums.ItemCategory;
+import org.dnplugins.dNStorage.listeners.AutoPickupListener;
 
 import java.util.*;
 
@@ -23,12 +28,16 @@ public class StorageGUI implements Listener {
     private final StorageManager storageManager;
     private final AutoPickupListener autoPickupListener;
     private final LanguageManager languageManager;
+    private final SoundManager soundManager;
+    private final JavaPlugin plugin;
 
     public StorageGUI(JavaPlugin plugin, StorageManager storageManager, AutoPickupListener autoPickupListener,
-            LanguageManager languageManager) {
+            LanguageManager languageManager, SoundManager soundManager) {
+        this.plugin = plugin;
         this.storageManager = storageManager;
         this.autoPickupListener = autoPickupListener;
         this.languageManager = languageManager;
+        this.soundManager = soundManager;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -51,6 +60,7 @@ public class StorageGUI implements Listener {
         return title.startsWith(prefix.replace("&", "§"));
     }
 
+
     /**
      * Mở GUI chính với các danh mục
      */
@@ -64,6 +74,9 @@ public class StorageGUI implements Listener {
 
         // Nút tự động nhặt
         gui.setItem(4, createAutoPickupButton(player));
+
+        // Nút sắp xếp inventory
+        gui.setItem(8, createSortButton());
 
         // Nút đóng
         gui.setItem(22, createCloseButton());
@@ -80,22 +93,27 @@ public class StorageGUI implements Listener {
             }
         }
 
+        soundManager.playGUIOpenSound(player);
         player.openInventory(gui);
     }
 
     /**
-     * Mở GUI danh mục cụ thể
+     * Mở GUI danh mục cụ thể (với lazy loading và async)
      */
     public void openCategoryGUI(Player player, ItemCategory.Category category) {
-        Map<Material, Integer> items = storageManager.getCategoryItems(player.getUniqueId(), category);
+        // Hiển thị loading message
+        player.sendMessage(languageManager.getMessage("message.storage.loading"));
 
-        // Tính số trang cần thiết (45 items mỗi trang)
-        int totalItems = items.size();
-        int pages = (int) Math.ceil(totalItems / 45.0);
-        if (pages == 0)
-            pages = 1;
+        // Load items async (Lazy loading)
+        storageManager.getCategoryItemsAsync(player.getUniqueId(), category, items -> {
+            // Tính số trang cần thiết (45 items mỗi trang)
+            int totalItems = items.size();
+            int pages = (int) Math.ceil(totalItems / 45.0);
+            if (pages == 0)
+                pages = 1;
 
-        openCategoryPage(player, category, items, 0, pages);
+            openCategoryPage(player, category, items, 0, pages);
+        });
     }
 
     /**
@@ -212,7 +230,7 @@ public class StorageGUI implements Listener {
     }
 
     /**
-     * Tạo nút danh mục
+     * Tạo nút danh mục (với lazy loading)
      */
     private ItemStack createCategoryButton(ItemCategory.Category category, Player player) {
         ItemStack button = new ItemStack(category.getIcon());
@@ -221,6 +239,7 @@ public class StorageGUI implements Listener {
         String categoryName = languageManager.getMessage("category." + category.name().toLowerCase());
         meta.setDisplayName("§6§l" + categoryName);
 
+        // Lazy loading - chỉ load khi cần hiển thị
         Map<Material, Integer> items = storageManager.getCategoryItems(player.getUniqueId(), category);
         int totalItems = items.size();
         int totalAmount = 0;
@@ -280,6 +299,7 @@ public class StorageGUI implements Listener {
         button.setItemMeta(meta);
         return button;
     }
+
 
     /**
      * Lấy tên hiển thị của vật phẩm
@@ -341,6 +361,11 @@ public class StorageGUI implements Listener {
 
                 // Cập nhật GUI
                 openMainGUI(player);
+            } else if (clicked.getType() == Material.HOPPER) {
+                // Nút sắp xếp inventory
+                sortPlayerInventory(player);
+                // Cập nhật GUI
+                openMainGUI(player);
             }
         }
         // Xử lý GUI danh mục
@@ -386,6 +411,7 @@ public class StorageGUI implements Listener {
                     if (added > 0) {
                         item.setAmount(0);
                         player.setItemOnCursor(null);
+                        soundManager.playItemAddSound(player);
                         player.sendMessage(languageManager.getMessage("message.item.added")
                                 .replace("{amount}", formatNumber(added))
                                 .replace("{item}", getMaterialDisplayName(material)));
@@ -412,6 +438,7 @@ public class StorageGUI implements Listener {
 
                                 if (added > 0) {
                                     invItem.setAmount(0);
+                                    soundManager.playItemAddSound(player);
                                     player.sendMessage(languageManager.getMessage("message.item.added")
                                             .replace("{amount}", formatNumber(added))
                                             .replace("{item}", getMaterialDisplayName(material)));
@@ -422,40 +449,42 @@ public class StorageGUI implements Listener {
                         }
                     }
                 } else {
-                    // Click phải vào item trong GUI: Lấy 1 cái
+                    // Click phải vào item trong GUI
                     Material material = clicked.getType();
                     ItemCategory.Category itemCategory = ItemCategory.getCategory(material);
 
                     if (itemCategory != null && itemCategory == currentCategory) {
-                        // Kiểm tra vật phẩm có trong kho không
-                        int availableAmount = storageManager.getItemAmount(player.getUniqueId(), material);
-                        if (availableAmount <= 0) {
-                            player.sendMessage(languageManager.getMessage("message.item.not_found"));
-                            return;
-                        }
-
-                        // Lấy 1 cái
-                        int taken = storageManager.removeItem(player.getUniqueId(), material, 1);
-
-                        if (taken > 0) {
-                            ItemStack item = new ItemStack(material, 1);
-                            HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(item);
-
-                            if (!leftover.isEmpty()) {
-                                // Trả lại vào kho nếu inventory đầy
-                                storageManager.addItem(player.getUniqueId(), material, leftover.get(0).getAmount());
-                                player.sendMessage(languageManager.getMessage("message.inventory.full"));
-                            } else {
-                                player.sendMessage(languageManager.getMessage("message.item.removed")
-                                        .replace("{amount}", formatNumber(1))
-                                        .replace("{item}", getMaterialDisplayName(material)));
+                        // Click phải: Lấy 1 cái (async với lazy loading)
+                        storageManager.getItemAmountAsync(player.getUniqueId(), material, availableAmount -> {
+                            if (availableAmount <= 0) {
+                                player.sendMessage(languageManager.getMessage("message.item.not_found"));
+                                return;
                             }
 
-                            // Cập nhật GUI
-                            openCategoryGUI(player, currentCategory);
-                        } else {
-                            player.sendMessage(languageManager.getMessage("message.item.not_found"));
-                        }
+                            // Lấy 1 cái
+                            int taken = storageManager.removeItem(player.getUniqueId(), material, 1);
+
+                            if (taken > 0) {
+                                ItemStack item = new ItemStack(material, 1);
+                                HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(item);
+
+                                if (!leftover.isEmpty()) {
+                                    // Trả lại vào kho nếu inventory đầy
+                                    storageManager.addItem(player.getUniqueId(), material, leftover.get(0).getAmount());
+                                    player.sendMessage(languageManager.getMessage("message.inventory.full"));
+                                } else {
+                                    soundManager.playItemRemoveSound(player);
+                                    player.sendMessage(languageManager.getMessage("message.item.removed")
+                                            .replace("{amount}", formatNumber(1))
+                                            .replace("{item}", getMaterialDisplayName(material)));
+                                }
+
+                                // Cập nhật GUI (async)
+                                openCategoryGUI(player, currentCategory);
+                            } else {
+                                player.sendMessage(languageManager.getMessage("message.item.not_found"));
+                            }
+                        });
                     }
                 }
                 return;
@@ -500,7 +529,7 @@ public class StorageGUI implements Listener {
                 ItemCategory.Category category = getCategoryFromTitle(title);
                 if (category != null) {
                     // Parse page number
-                    int currentPage = 0;
+                    int parsedPage = 0;
                     try {
                         // Tìm pattern "(Page " hoặc "(Trang "
                         int pageStart = title.indexOf("(");
@@ -511,31 +540,36 @@ public class StorageGUI implements Listener {
                             if (parts.length > 0) {
                                 String pageStr = parts[0].replaceAll("[^0-9]", "");
                                 if (!pageStr.isEmpty()) {
-                                    currentPage = Integer.parseInt(pageStr) - 1;
+                                    parsedPage = Integer.parseInt(pageStr) - 1;
                                 }
                             }
                         }
                     } catch (Exception e) {
                         // Nếu không parse được, dùng page 0
-                        currentPage = 0;
+                        parsedPage = 0;
                     }
 
-                    Map<Material, Integer> items = storageManager.getCategoryItems(player.getUniqueId(), category);
-                    int totalItems = items.size();
-                    int totalPages = (int) Math.ceil(totalItems / 45.0);
-                    if (totalPages == 0)
-                        totalPages = 1;
+                    final int currentPage = parsedPage; // Final để sử dụng trong lambda
+                    final int slot = event.getSlot(); // Final để sử dụng trong lambda
 
-                    int newPage = currentPage;
-                    if (event.getSlot() == 48) {
-                        // Trang trước
-                        newPage = Math.max(0, currentPage - 1);
-                    } else if (event.getSlot() == 50) {
-                        // Trang sau
-                        newPage = Math.min(totalPages - 1, currentPage + 1);
-                    }
+                    // Load items async (Lazy loading)
+                    storageManager.getCategoryItemsAsync(player.getUniqueId(), category, items -> {
+                        int totalItems = items.size();
+                        int totalPages = (int) Math.ceil(totalItems / 45.0);
+                        if (totalPages == 0)
+                            totalPages = 1;
 
-                    openCategoryPage(player, category, items, newPage, totalPages);
+                        int newPage = currentPage;
+                        if (slot == 48) {
+                            // Trang trước
+                            newPage = Math.max(0, currentPage - 1);
+                        } else if (slot == 50) {
+                            // Trang sau
+                            newPage = Math.min(totalPages - 1, currentPage + 1);
+                        }
+
+                        openCategoryPage(player, category, items, newPage, totalPages);
+                    });
                 }
                 return;
             }
@@ -556,43 +590,45 @@ public class StorageGUI implements Listener {
                     return;
                 }
 
-                // Kiểm tra vật phẩm có trong kho không
-                int availableAmount = storageManager.getItemAmount(player.getUniqueId(), material);
-                if (availableAmount <= 0) {
-                    player.sendMessage(languageManager.getMessage("message.item.not_found"));
-                    return;
-                }
-
-                int amountToTake;
-                if (event.isShiftClick()) {
-                    // Shift + Click trái: Lấy tất cả
-                    amountToTake = availableAmount;
-                } else {
-                    // Click trái: Lấy 1 stack
-                    amountToTake = Math.min(material.getMaxStackSize(), availableAmount);
-                }
-
-                int taken = storageManager.removeItem(player.getUniqueId(), material, amountToTake);
-
-                if (taken > 0) {
-                    ItemStack item = new ItemStack(material, taken);
-                    HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(item);
-
-                    if (!leftover.isEmpty()) {
-                        // Trả lại vào kho nếu inventory đầy
-                        storageManager.addItem(player.getUniqueId(), material, leftover.get(0).getAmount());
-                        player.sendMessage(languageManager.getMessage("message.inventory.full"));
-                    } else {
-                        player.sendMessage(languageManager.getMessage("message.item.removed")
-                                .replace("{amount}", formatNumber(taken))
-                                .replace("{item}", getMaterialDisplayName(material)));
+                // Kiểm tra vật phẩm có trong kho không (async với lazy loading)
+                storageManager.getItemAmountAsync(player.getUniqueId(), material, availableAmount -> {
+                    if (availableAmount <= 0) {
+                        player.sendMessage(languageManager.getMessage("message.item.not_found"));
+                        return;
                     }
 
-                    // Cập nhật GUI
-                    openCategoryGUI(player, category);
-                } else {
-                    player.sendMessage(languageManager.getMessage("message.item.not_found"));
-                }
+                    int amountToTake;
+                    if (event.isShiftClick()) {
+                        // Shift + Click trái: Lấy tất cả
+                        amountToTake = availableAmount;
+                    } else {
+                        // Click trái: Lấy 1 stack
+                        amountToTake = Math.min(material.getMaxStackSize(), availableAmount);
+                    }
+
+                    int taken = storageManager.removeItem(player.getUniqueId(), material, amountToTake);
+
+                    if (taken > 0) {
+                        ItemStack item = new ItemStack(material, taken);
+                        HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(item);
+
+                        if (!leftover.isEmpty()) {
+                            // Trả lại vào kho nếu inventory đầy
+                            storageManager.addItem(player.getUniqueId(), material, leftover.get(0).getAmount());
+                            player.sendMessage(languageManager.getMessage("message.inventory.full"));
+                        } else {
+                            soundManager.playItemRemoveSound(player);
+                            player.sendMessage(languageManager.getMessage("message.item.removed")
+                                    .replace("{amount}", formatNumber(taken))
+                                    .replace("{item}", getMaterialDisplayName(material)));
+                        }
+
+                        // Cập nhật GUI (async)
+                        openCategoryGUI(player, category);
+                    } else {
+                        player.sendMessage(languageManager.getMessage("message.item.not_found"));
+                    }
+                });
             }
         }
     }
@@ -633,11 +669,12 @@ public class StorageGUI implements Listener {
     }
 
     /**
-     * Thêm tất cả vật phẩm từ inventory vào kho theo danh mục
+     * Thêm tất cả vật phẩm từ inventory vào kho theo danh mục (sử dụng batch
+     * operations)
      */
     private void addItemsFromInventory(Player player, ItemCategory.Category category) {
-        int totalAdded = 0;
-        int itemsCount = 0;
+        // Thu thập tất cả items cần thêm (Batch operations)
+        Map<Material, Integer> itemsToAdd = new HashMap<>();
 
         for (ItemStack item : player.getInventory().getContents()) {
             if (item == null || item.getType() == Material.AIR) {
@@ -649,33 +686,164 @@ public class StorageGUI implements Listener {
 
             if (itemCategory == category) {
                 int amount = item.getAmount();
-                int added = storageManager.addItem(player.getUniqueId(), material, amount);
+                itemsToAdd.put(material, itemsToAdd.getOrDefault(material, 0) + amount);
+            }
+        }
 
-                if (added > 0) {
-                    totalAdded += added;
-                    itemsCount++;
-                    item.setAmount(0);
+        if (itemsToAdd.isEmpty()) {
+            String categoryName = languageManager.getMessage("category." + category.name().toLowerCase());
+            player.sendMessage(languageManager.getMessage("message.items.none_in_inventory")
+                    .replace("{category}", categoryName));
+            return;
+        }
+
+        // Sử dụng batch operations để thêm tất cả items cùng lúc
+        storageManager.batchAddItems(player.getUniqueId(), itemsToAdd);
+
+        // Xóa items khỏi inventory
+        int totalAdded = 0;
+        int itemsCount = itemsToAdd.size();
+        for (ItemStack item : player.getInventory().getContents()) {
+            if (item == null || item.getType() == Material.AIR) {
+                continue;
+            }
+
+            Material material = item.getType();
+            if (itemsToAdd.containsKey(material)) {
+                totalAdded += item.getAmount();
+                item.setAmount(0);
+            }
+        }
+
+        String categoryName = languageManager.getMessage("category." + category.name().toLowerCase());
+        if (totalAdded > 0) {
+            soundManager.playItemAddSound(player);
+        }
+        player.sendMessage(languageManager.getMessage("message.items.added_from_inventory")
+                .replace("{total}", formatNumber(totalAdded))
+                .replace("{count}", String.valueOf(itemsCount))
+                .replace("{category}", categoryName));
+
+        // Cập nhật GUI (async)
+        openCategoryGUI(player, category);
+    }
+
+    /**
+     * Sắp xếp tất cả vật phẩm trong inventory
+     * Sắp xếp theo: số lượng giảm dần -> tên bảng chữ cái -> item ID tăng dần
+     */
+    public void sortPlayerInventory(Player player) {
+        // Thu thập và gộp các items cùng loại từ inventory
+        Map<Material, Integer> itemsMap = new HashMap<>();
+        Map<Material, ItemStack> itemStackMap = new HashMap<>();
+        
+        for (ItemStack item : player.getInventory().getContents()) {
+            if (item != null && item.getType() != Material.AIR) {
+                Material material = item.getType();
+                itemsMap.put(material, itemsMap.getOrDefault(material, 0) + item.getAmount());
+                // Lưu một ItemStack mẫu (với metadata) để giữ nguyên thông tin
+                if (!itemStackMap.containsKey(material)) {
+                    itemStackMap.put(material, item.clone());
                 }
             }
         }
 
-        if (totalAdded > 0) {
-            String categoryName = languageManager.getMessage("category." + category.name().toLowerCase());
-            player.sendMessage(languageManager.getMessage("message.items.added_from_inventory")
-                    .replace("{total}", formatNumber(totalAdded))
-                    .replace("{count}", String.valueOf(itemsCount))
-                    .replace("{category}", categoryName));
-            // Cập nhật GUI
-            openCategoryGUI(player, category);
-        } else {
-            String categoryName = languageManager.getMessage("category." + category.name().toLowerCase());
-            player.sendMessage(languageManager.getMessage("message.items.none_in_inventory")
-                    .replace("{category}", categoryName));
+        if (itemsMap.isEmpty()) {
+            player.sendMessage(languageManager.getMessage("message.sort.no_items"));
+            return;
         }
+
+        // Chuyển đổi sang List để sắp xếp
+        List<Map.Entry<Material, Integer>> itemsList = new ArrayList<>(itemsMap.entrySet());
+
+        // Sắp xếp items theo thứ tự:
+        // 1. Số lượng giảm dần (descending order of quantity)
+        // 2. Tên bảng chữ cái (alphabetical order)
+        // 3. Item ID tăng dần (ascending order of item ID)
+        itemsList.sort((entry1, entry2) -> {
+            Material mat1 = entry1.getKey();
+            Material mat2 = entry2.getKey();
+            int amount1 = entry1.getValue();
+            int amount2 = entry2.getValue();
+
+            // So sánh theo số lượng (giảm dần)
+            int amountCompare = Integer.compare(amount2, amount1);
+            if (amountCompare != 0) {
+                return amountCompare;
+            }
+
+            // Nếu số lượng bằng nhau, so sánh theo tên (bảng chữ cái)
+            String name1 = getMaterialDisplayName(mat1);
+            String name2 = getMaterialDisplayName(mat2);
+            int nameCompare = name1.compareToIgnoreCase(name2);
+            if (nameCompare != 0) {
+                return nameCompare;
+            }
+
+            // Nếu tên giống nhau, so sánh theo item ID (tăng dần)
+            return mat1.name().compareTo(mat2.name());
+        });
+
+        // Xóa tất cả items khỏi inventory
+        player.getInventory().clear();
+
+        // Đặt lại items đã sắp xếp vào inventory
+        int slot = 0;
+        for (Map.Entry<Material, Integer> entry : itemsList) {
+            Material material = entry.getKey();
+            int totalAmount = entry.getValue();
+            ItemStack template = itemStackMap.get(material);
+            
+            // Chia thành các stack (tối đa maxStackSize mỗi stack)
+            int maxStackSize = material.getMaxStackSize();
+            while (totalAmount > 0 && slot < player.getInventory().getSize()) {
+                ItemStack stack = template.clone();
+                int stackAmount = Math.min(totalAmount, maxStackSize);
+                stack.setAmount(stackAmount);
+                player.getInventory().setItem(slot, stack);
+                totalAmount -= stackAmount;
+                slot++;
+            }
+            
+            // Nếu còn items nhưng inventory đầy, thả xuống đất
+            if (totalAmount > 0) {
+                ItemStack leftover = template.clone();
+                leftover.setAmount(totalAmount);
+                player.getWorld().dropItemNaturally(player.getLocation(), leftover);
+            }
+        }
+
+        soundManager.playItemAddSound(player);
+        player.sendMessage(languageManager.getMessage("message.sort.success")
+                .replace("{total}", formatNumber(itemsList.size())));
+    }
+
+    /**
+     * Tạo nút sắp xếp inventory
+     */
+    private ItemStack createSortButton() {
+        ItemStack button = new ItemStack(Material.HOPPER);
+        ItemMeta meta = button.getItemMeta();
+        meta.setDisplayName(languageManager.getMessage("button.sort"));
+        List<String> lore = new ArrayList<>();
+        lore.add(languageManager.getMessage("lore.sort.description"));
+        lore.add(" ");
+        lore.add(languageManager.getMessage("lore.sort.click"));
+        meta.setLore(lore);
+        button.setItemMeta(meta);
+        return button;
     }
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        // Có thể thêm logic xử lý khi đóng GUI
+        if (event.getPlayer() instanceof Player) {
+            Player player = (Player) event.getPlayer();
+            String title = event.getView().getTitle();
+            
+            // Chỉ phát sound khi đóng GUI chính hoặc category GUI
+            if (title.equals(getMainTitle()) || isCategoryGUI(title)) {
+                soundManager.playGUICloseSound(player);
+            }
+        }
     }
 }

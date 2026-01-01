@@ -6,7 +6,7 @@
 
     <groupId>org.dnplugins</groupId>
     <artifactId>DN-Storage</artifactId>
-    <version>1.0</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>DN-Storage</name>
@@ -39,6 +39,65 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <!-- Tối ưu dung lượng: loại bỏ các class không sử dụng -->
+                            <minimizeJar>true</minimizeJar>
+                            <filters>
+                                <filter>
+                                    <!-- Giữ lại tất cả class của plugin -->
+                                    <artifact>org.dnplugins:DN-Storage</artifact>
+                                    <includes>
+                                        <include>**</include>
+                                    </includes>
+                                </filter>
+                                <filter>
+                                    <!-- H2 Database: đảm bảo driver được giữ lại, loại bỏ các phần không cần thiết -->
+                                    <artifact>com.h2database:h2</artifact>
+                                    <includes>
+                                        <!-- Đảm bảo driver được giữ lại (load bằng reflection) -->
+                                        <include>org/h2/Driver</include>
+                                        <include>META-INF/services/java.sql.Driver</include>
+                                    </includes>
+                                    <excludes>
+                                        <!-- Loại bỏ các tool không cần thiết -->
+                                        <exclude>org/h2/tools/Server*</exclude>
+                                        <exclude>org/h2/tools/Recover*</exclude>
+                                        <exclude>org/h2/tools/ChangeFileEncryption*</exclude>
+                                        <exclude>org/h2/tools/CompressTool*</exclude>
+                                        <exclude>org/h2/tools/ConvertTraceFile*</exclude>
+                                        <exclude>org/h2/tools/CreateCluster*</exclude>
+                                        <exclude>org/h2/tools/DeleteDbFiles*</exclude>
+                                        <exclude>org/h2/tools/GenerateCertificate*</exclude>
+                                        <exclude>org/h2/tools/PageStoreCompact*</exclude>
+                                        <exclude>org/h2/tools/RunScript*</exclude>
+                                        <exclude>org/h2/tools/SimpleResultSet*</exclude>
+                                        <exclude>org/h2/tools/SimpleRowSource*</exclude>
+                                        <exclude>org/h2/tools/SimpleRowSourceMetaData*</exclude>
+                                        <!-- Loại bỏ web server (không cần cho embedded mode) -->
+                                        <exclude>org/h2/server/**</exclude>
+                                        <!-- Loại bỏ MVStore (nếu không dùng) -->
+                                        <exclude>org/h2/mvstore/**</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <!-- MySQL Connector: đảm bảo driver được giữ lại, loại bỏ các phần không cần thiết -->
+                                    <artifact>com.mysql:mysql-connector-j</artifact>
+                                    <includes>
+                                        <!-- Đảm bảo driver được giữ lại (load bằng reflection) -->
+                                        <include>com/mysql/cj/jdbc/Driver</include>
+                                        <include>META-INF/services/java.sql.Driver</include>
+                                    </includes>
+                                    <excludes>
+                                        <!-- Loại bỏ các phần không cần thiết -->
+                                        <exclude>com/mysql/cj/xdevapi/**</exclude>
+                                        <exclude>com/mysql/cj/x/**</exclude>
+                                        <exclude>com/mysql/cj/jdbc/ha/**</exclude>
+                                        <exclude>com/mysql/cj/jdbc/loadbalance/**</exclude>
+                                        <exclude>com/mysql/cj/jdbc/replication/**</exclude>
+                                        <exclude>com/mysql/cj/jdbc/failover/**</exclude>
+                                        <exclude>com/mysql/cj/jdbc/admin/**</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
                             <relocations>
                                 <relocation>
                                     <pattern>org.h2</pattern>

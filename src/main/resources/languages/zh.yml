@@ -1,0 +1,109 @@
+# Chinese (Simplified) Language File for DN-Storage
+
+# GUI Titles
+gui.main.title: "&6&l物品存储"
+gui.category.title: "&6&l存储 - {category} &7(第 {page}/{total} 页)"
+gui.search.title: "&6&l搜索 - {category} &7({count} 结果)"
+
+# Category Names
+category.ore: "矿石"
+category.building: "建筑方块"
+category.wood: "木块"
+
+# Messages
+message.storage.opened: "&a使用 /kho 或 /storage 打开物品存储！"
+message.storage.loading: "&7加载数据中..."
+message.item.added: "&a已将 &e{amount} &a个 {item} 添加到存储！"
+message.item.removed: "&a已从存储中取出 &e{amount} &a个 {item}！"
+message.item.not_storable: "&c此物品无法存储！"
+message.item.not_found: "&c存储中没有此物品！"
+message.item.wrong_category: "&c类别错误！此物品属于 {category}，不是当前类别。"
+message.inventory.full: "&c背包已满！部分物品已返回存储。"
+message.items.added_from_inventory: "&a已将 &e{total} &a个物品，共 &e{count} &a种类型添加到 {category} 存储！"
+message.items.none_in_inventory: "&c背包中没有属于 {category} 类别的物品！"
+message.sort.success: "&a已排序 &e{total} &a种物品类型在背包中！"
+message.sort.no_items: "&c背包中没有物品可排序！"
+message.search.placeholder: "输入物品名称..."
+message.search.no_results: "&c未找到物品！"
+message.search.results: "&a找到 &e{count} &a个结果"
+message.custom_amount.placeholder: "输入数量..."
+message.custom_amount.invalid: "&c数量无效！"
+message.custom_amount.too_much: "&c数量超过存储中的可用物品！"
+message.custom_amount.too_much_inventory: "&c数量超过背包中的可用物品！"
+message.auto_store.triggered: "&a[自动] 已将 &e{amount} &a个 {item} 添加到存储，因为背包已满！"
+
+# Auto Pickup
+autopickup.enabled: "&a已启用自动拾取！"
+autopickup.disabled: "&c已禁用自动拾取！"
+autopickup.item_picked: "&a[自动] 已将 &e{amount} &a个 {item} 添加到存储！"
+
+# Commands
+command.no_permission: "&c您没有权限使用此命令！"
+command.only_player: "&c此命令仅限玩家使用！"
+command.reload.success: "&a成功重新加载配置和消息！"
+command.reload.failed: "&c无法重新加载插件！"
+
+# GUI Buttons
+button.close: "&c&l关闭"
+button.back: "&e&l◀ 返回"
+button.next_page: "&e&l下一页 ▶▶"
+button.prev_page: "&e&l◀◀ 上一页"
+button.add_from_inventory: "&a&l从背包添加"
+button.autopickup.on: "&a&l自动拾取: &a开启"
+button.autopickup.off: "&7&l自动拾取: &c关闭"
+button.search: "&e&l🔍 搜索"
+button.custom_amount: "&e&l输入数量"
+button.take_all: "&a&l全部取出"
+button.sort: "&e&l⚙ 排序"
+
+# GUI Lore
+lore.item.amount: "&7数量: &a{amount}"
+lore.item.click_left: "&e左键点击: &a取出 1 组"
+lore.item.click_right_item: "&e右键点击物品: &a取出 1 个"
+lore.item.click_right_empty: "&7右键点击空槽: &a将物品添加到存储"
+lore.item.shift_click: "&eShift + 左键点击: &a全部取出"
+lore.category.item_count: "&7物品类型: &a{count}"
+lore.category.total_amount: "&7总数量: &a{amount}"
+lore.category.click_to_open: "&e点击打开 {category} 存储"
+lore.autopickup.description: "&7自动拾取掉落&7在地上的物品到存储"
+lore.autopickup.status.on: "&a✓ 已启用"
+lore.autopickup.status.off: "&c✗ 已禁用"
+lore.autopickup.click_to_toggle: "&e点击{action}"
+lore.autopickup.toggle.on: "禁用"
+lore.autopickup.toggle.off: "启用"
+lore.add_from_inventory.description: "&7将此类别中的所有物品\n&7从背包添加到存储"
+lore.add_from_inventory.click: "&e点击添加"
+lore.sort.description: "&7按以下方式排序背包中的所有物品:\n&7- 数量 (降序)\n&7- 名称 (字母顺序)\n&7- 物品ID (升序)"
+lore.sort.click: "&e点击排序"
+
+# Database
+database.connected: "成功连接到数据库！"
+database.connection_failed: "无法连接到数据库！"
+database.driver_not_found: "找不到 {driver} 驱动程序！请确保驱动程序包含在 JAR 中。"
+database.connection_null: "连接为空！无法执行数据库操作。"
+database.cannot_add_item: "无法添加物品: 连接为空"
+database.cannot_get_amount: "无法获取物品数量: 连接为空"
+database.cannot_update: "无法更新物品数量: 连接为空"
+database.cannot_delete: "无法删除物品: 连接为空"
+database.cannot_get_items: "无法获取物品列表: 连接为空"
+database.connection_closed: "数据库连接已关闭！"
+database.reconnect_failed: "无法重新连接到数据库！"
+
+# Plugin
+plugin.enabled: "DN-Storage 已启用！"
+plugin.disabled: "DN-Storage 已禁用！"
+plugin.reloaded: "DN-Storage 已重新加载！"
+plugin.language_loaded: "已加载语言: {language}"
+plugin.language_key_not_found: "找不到语言键: {key}"
+
+# Storage
+storage.invalid_material: "无效物品: {material}"
+
+# Database Errors
+database.error.add_item: "添加物品到数据库时出错！"
+database.error.get_amount: "从数据库获取物品数量时出错！"
+database.error.update: "更新物品数量时出错！"
+database.error.delete: "从数据库删除物品时出错！"
+database.error.get_items: "从数据库获取物品列表时出错！"
+database.error.close: "关闭数据库连接时出错！"
+

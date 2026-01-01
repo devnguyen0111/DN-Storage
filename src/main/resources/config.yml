@@ -12,6 +12,20 @@ database:
     password: ""
 
 # Cấu hình Ngôn ngữ
-# Chọn ngôn ngữ: vi (Tiếng Việt) hoặc en (English)
-language: vi # vi hoặc en
+# Chọn ngôn ngữ từ thư mục languages/
+# Các ngôn ngữ có sẵn: vi (Tiếng Việt), en (English), es (Español), fr (Français), 
+# de (Deutsch), zh (中文), ja (日本語), ko (한국어), pt (Português), ru (Русский)
+# Bạn có thể thêm file ngôn ngữ mới vào thư mục plugins/DN-Storage/languages/
+language: vi # Mã ngôn ngữ (vi, en, es, fr, de, zh, ja, ko, pt, ru, ...)
+
+# Cấu hình Sound Effects
+# Bật/tắt sound effects khi sử dụng kho
+sounds:
+  enabled: true # Bật/tắt sound effects
+  volume: 1.0 # Âm lượng (0.0 - 1.0)
+  pitch: 1.0 # Độ cao âm thanh (0.5 - 2.0)
+  gui_open: "BLOCK_CHEST_OPEN" # Sound khi mở GUI
+  gui_close: "BLOCK_CHEST_CLOSE" # Sound khi đóng GUI
+  item_add: "ENTITY_ITEM_PICKUP" # Sound khi thêm vật phẩm
+  item_remove: "ENTITY_ITEM_PICKUP" # Sound khi lấy vật phẩm
 

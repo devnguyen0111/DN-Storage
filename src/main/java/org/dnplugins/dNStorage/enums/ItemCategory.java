@@ -1,4 +1,4 @@
-package org.dnplugins.dNStorage;
+package org.dnplugins.dNStorage.enums;
 
 import org.bukkit.Material;
 
